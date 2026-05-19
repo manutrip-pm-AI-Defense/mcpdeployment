@@ -3,13 +3,16 @@ name = "mcp-server-deepdive-deployment"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dependencies = [
+    "cisco-ai-mcp-scanner>=4.6.0",
     "mcp[cli]>=1.9.0",
+    "requests>=2.33.1",
 ]
 
 [project.scripts]
 mcp-server = "mcpserver.__main__:main"
+mcp-server-remote = "mcpserver.__main_remote__:main"
 
 [build-system]
 requires = ["setuptools"]
