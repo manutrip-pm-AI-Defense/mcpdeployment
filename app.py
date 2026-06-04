@@ -17,9 +17,9 @@ port = int(os.getenv("MCP_REMOTE_PORT", "8000"))
 mcp.settings.host = host
 mcp.settings.port = port
 
-# FastMCP has an asgi_app property that returns the actual ASGI callable
-# This is what gunicorn needs
-app = mcp.asgi_app
+# FastMCP has streamable_http_app property for HTTP/SSE transport
+# This returns the ASGI callable that gunicorn needs
+app = mcp.streamable_http_app
 
 if __name__ == "__main__":
     # For local testing - use streamable-http transport
