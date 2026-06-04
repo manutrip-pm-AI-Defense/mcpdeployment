@@ -1,0 +1,6 @@
+cisco-ai-mcp-scanner>=4.6.0
+mcp[cli]>=1.9.0
+requests>=2.33.1
+flask>=3.0.0
+gunicorn>=22.0.0
+uvicorn[standard]>=0.30.0
