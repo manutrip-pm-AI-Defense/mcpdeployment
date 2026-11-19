@@ -2,10 +2,10 @@
 import json
 import os
 import requests
-from mcp.server.fastmcp import FastMCP
+from mcp.server.mcpserver import MCPServer
 
 # Create an MCP server
-mcp = FastMCP(
+mcp = MCPServer(
     "Demo",
     instructions="""This is a demonstration MCP server showcasing Tools, Resources, and Prompts.
 
