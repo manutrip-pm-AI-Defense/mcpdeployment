@@ -5,7 +5,34 @@ import requests
 from mcp.server.fastmcp import FastMCP
 
 # Create an MCP server
-mcp = FastMCP("Demo")
+mcp = FastMCP(
+    "Demo",
+    instructions="""This is a demonstration MCP server showcasing Tools, Resources, and Prompts.
+
+## Available Tools
+
+- **format_json**: Pretty-prints and validates JSON strings. Use this when users provide raw or minified JSON that needs formatting, or to validate whether a string is valid JSON.
+- **get_news**: Fetches latest news articles from NewsData.io. Supports filtering by country code (e.g. "us", "in"), category (e.g. "technology", "business"), and language. Requires the NEWSDATA_API_KEY environment variable to be configured — check before calling.
+
+## Available Resources
+
+- **demo://info**: Returns server metadata including version, capabilities list, and whether optional integrations (NewsData API) are configured. Read this first to understand what is available.
+- **demo://file/data**: Returns structured sample data from the project's data/sample_data.json file. Use this when the user asks about sample or demo data.
+
+## Available Prompts
+
+- **code_review**: Generates a structured code review prompt. Accepts code and an optional language parameter (defaults to Python). Use when the user wants a thorough review covering quality, bugs, performance, security, and readability.
+- **summarize**: Generates a summarization prompt. Accepts text and an optional max_words limit (defaults to 100). Use when the user needs a concise summary of longer content.
+- **debug_helper**: Generates a debugging assistance prompt. Accepts an error message and optional context. Use when the user is troubleshooting an error and needs structured help identifying the cause and solutions.
+
+## Usage Guidelines
+
+1. When a user asks about server capabilities, read the demo://info resource rather than guessing.
+2. Before calling get_news, confirm the API key is configured by checking demo://info — the integrations.newsdata_configured field indicates availability.
+3. Prefer the prompts for their respective tasks — they provide consistent, structured output that covers all relevant dimensions.
+4. format_json will raise a ValueError on invalid JSON — use this to validate user-provided JSON strings.
+"""
+)
 
 # Load environment variables
 NEWSDATA_API_KEY = os.getenv("NEWSDATA_API_KEY")
